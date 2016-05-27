@@ -1,0 +1,117 @@
+<%= form_for(@immunization, {url: action_name == "new" ? immunizations_url : immunization_url, method: action_name == "new" ? :post : :put })  do |f| %>
+
+<% if @immunization.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@immunization.errors.count, "error") %> There is some error, the system prohibited this immunization from being saved:</h2>
+    <ul>
+    <% @immunization.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= f.hidden_field :patient_id, {value: current_user.patient_id } %>
+
+
+
+
+  
+
+<label  class="col-sm-2 form-control-label">Administrator</label>
+  <div class="form-group row">
+    
+    <div class="col-sm-8">
+       <%= f.text_field :administrator, {class: 'form-control', placeholder: 'Please input your administrator name'} %>
+    </div>
+
+  </div>
+<label class="col-sm-2 form-control-label">Administration Date</label>
+  <div class="form-group row">
+    
+    <div class="col-sm-8">
+
+      <%= f.text_field :date_administered, {class: 'form-control Fenhandatepicker', placeholder: 'Please input yout Administration Date'} %>
+      
+    </div>
+  </div>
+  <label class="col-sm-2 form-control-label">Reimmunization Due Date</label>
+  <div class="form-group row">
+   
+    <div class="col-sm-8">
+       <%= f.text_field :reimmunization_due_date, {class: 'form-control Fenhandatepicker', placeholder: 'Please input your reimmunization due date'} %>
+      
+    </div>
+  </div>
+  <label class="col-sm-2 form-control-label">NDC Code</label>
+ <div class="form-group row">
+    
+    <div class="col-sm-8">
+      <%= f.text_field :ndc, {class: 'form-control ', placeholder: 'Please input your NDC code'} %>
+      
+    </div>
+  </div>
+ <label class="col-sm-2 form-control-label">CPT Code</label>
+  <div class="form-group row">
+    
+    <div class="col-sm-8">
+      <%= f.text_field :cpt_code, {class: 'form-control', placeholder: 'Please input yout CPT'} %>
+      
+    </div>
+  </div>
+
+
+   <label class="col-sm-2 form-control-label">CVX Code</label>
+  <div class="form-group row">
+
+    
+    <div class="col-sm-8">
+      <%= f.text_field :cvx_codx, {class: 'form-control', placeholder: 'Please input your CVX Code'} %>
+    </div>
+  </div>
+ <label class="col-sm-2 form-control-label">Hcpcs Code</label>
+  <div class="form-group row">
+
+    
+    <div class="col-sm-8">
+
+      <%= f.text_field :hcpcs_code_long_string, {class: 'form-control findHCPCCode', placeholder: 'Please input your Hcpcs code'} %>
+      
+    </div>
+  </div>
+
+<div class="col-xs-12">
+  <div class="form-group">
+    <%= f.text_area(:notes, rows: 3, class: 'form-control', placeholder: 'You can leave some brief notes here') %>
+  </div>
+</div>
+
+
+
+<% if action_name == "new" %>
+<div class="col-xs-6">
+  <button class="btn btn-block btn-warning">Save Record</button>
+</div>
+
+
+<div class="col-xs-6">
+  <button class="btn btn-block btn-warning">Back</button>
+</div>
+
+
+<% elsif action_name == "edit" %>
+<div class="col-xs-6">
+  <button class="btn btn-block btn-warning">Update Record</button>
+</div>
+<div class="col-xs-6">
+  <button class="btn btn-block btn-warning">Back</button>
+</div>
+
+<%end%>
+
+
+</form>
+
+
+<% end %>
+<% end %>
